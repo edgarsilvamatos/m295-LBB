@@ -3,8 +3,9 @@ const app = express();
 const session = require('express-session');
 const port = 3000
 
-const tasks = require('./tasks');
-const login = require('./login');
+const tasks = require('./routes/tasks');
+const login = require('./routes/login');
+const swagger = require('./routes/swaggerRoute')
 
 app.use(session({
     secret: 'supersecret',
@@ -17,6 +18,7 @@ app.use(express.json())
 
 app.use('/tasks', tasks);
 app.use('/login', login);
+app.use('/swagger', swagger);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
